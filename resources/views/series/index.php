@@ -7,6 +7,12 @@
     <title>Séries</title>
 </head>
 <body>
-    olá Mundo!!!!
+    <ul>
+        <?php
+            foreach($series as $serie): ?>
+            <li><?=$serie;?></li>
+        <?php endforeach; ?>
+
+    </ul>
 </body>
 </html>
