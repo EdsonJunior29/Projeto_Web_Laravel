@@ -9,12 +9,19 @@
     <title>Séries</title>
 </head>
 <body>
-    <ul>
-        <?php
-            foreach($series as $serie): ?>
-            <li><?=$serie;?></li>
-        <?php endforeach; ?>
+    <div class="container">
 
-    </ul>
+        <h1>Séries</h1>
+
+        <a href="#" type="button" class="btn btn-secondary mb-2">Adicionar</a>
+
+        <ul class="list-group">
+            <?php
+                foreach($series as $serie): ?>
+                <li class="list-group-item"><?=$serie;?></li>
+            <?php endforeach; ?>
+
+        </ul>
+    </div>
 </body>
 </html>
