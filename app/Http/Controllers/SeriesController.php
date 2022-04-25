@@ -2,26 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Serie;
 use Illuminate\Http\Request;
 
-class SeriesController extends Controller{
+class SeriesController extends Controller
+{
 
-    public function index(){
-        $series = [
-            'Grey\s Anatomy',
-            'Lost',
-            'Agents of SHIELD'
-        ];
+    public function index()
+    {
+        $series = Serie::all();
 
-        return view('series.index' , compact('series'));
+        return view('series.index', compact('series'));
     }
 
-    public function create(){
+    public function create()
+    {
         return view('series.create');
     }
 
-    public function store(Request $request){
-        $nome = $request->nome;
-        var_dump($nome);
+    public function store(Request $request)
+    {
+        $serie = Serie::create($request->all());
+        echo "Série com id {$serie->id} criada: {$serie->nome}";
     }
 }
