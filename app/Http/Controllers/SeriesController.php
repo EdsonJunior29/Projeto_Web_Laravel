@@ -25,7 +25,7 @@ class SeriesController extends Controller
     {
         $serie = Serie::create($request->all());
 
-        return redirect('/series')->with('mensagem', 'Serie cadastrada com sucesso!');
+        return redirect()->route('Lista_series')->with('mensagem', 'Serie cadastrada com sucesso!');
     }
 
     public function destroy(Request $request)
