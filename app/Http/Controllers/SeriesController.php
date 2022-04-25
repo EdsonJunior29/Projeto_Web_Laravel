@@ -23,6 +23,10 @@ class SeriesController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'nome' => 'required|min:2'
+        ]);
+
         $serie = Serie::create($request->all());
 
         return redirect()->route('Lista_series')->with('mensagem', 'Serie cadastrada com sucesso!');
