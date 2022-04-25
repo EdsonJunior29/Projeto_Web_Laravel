@@ -6,9 +6,10 @@ Adicionar Séries
 
 @section('conteudo')
 <form method="post">
+    @csrf
     <div class="form-group">
-        <label for="InputName" class="form-label">Nome</label>
-        <input type="email" class="form-control mb-2" id="InputName" placeholder="Nome">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control mb-2" id="nome" placeholder="Nome" name="nome">
     </div>
     <button class="btn btn-primary">Adicionar</button>
 

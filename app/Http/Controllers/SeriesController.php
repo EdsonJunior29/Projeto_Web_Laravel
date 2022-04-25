@@ -19,6 +19,9 @@ class SeriesController extends Controller{
     public function create(){
         return view('series.create');
     }
-}
 
-?>
+    public function store(Request $request){
+        $nome = $request->nome;
+        var_dump($nome);
+    }
+}
