@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('episodios', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->Integer('numero');
+            $table->foreignId('temporada_id');
         });
     }
 

@@ -14,8 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('temporadas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->integer('numero');
+
+            $table->foreignId('serie_id');
         });
     }
 
