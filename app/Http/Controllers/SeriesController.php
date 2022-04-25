@@ -27,4 +27,10 @@ class SeriesController extends Controller
 
         return redirect('/series')->with('mensagem', 'Serie cadastrada com sucesso!');
     }
+
+    public function destroy(Request $request)
+    {
+        Serie::destroy($request->id);
+        return redirect('/series')->with('mensagem', 'Serie removida com sucesso!');
+    }
 }
