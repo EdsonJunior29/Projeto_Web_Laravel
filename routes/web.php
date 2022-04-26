@@ -12,3 +12,6 @@ Route::delete('/series/{id}', 'App\Http\Controllers\SeriesController@destroy');
 Route::get('/series/{serieid}/temporadas', 'App\Http\Controllers\TemporadasController@index');
 
 Route::post('/series/{id}/editaNome', 'App\Http\Controllers\SeriesController@editaNome');
+
+Route::get('/temporadas/{temporada}/episodios', 'App\Http\Controllers\EpisodioController@index');
+Route::post('/temporadas/{temporada}/episodios/assistir', 'App\Http\Controllers\EpisodioController@assistir');
