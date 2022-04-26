@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('temporadas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('numero');
+            $table->unsignedBigInteger('serie_id');
 
-            $table->foreignId('serie_id');
+            $table->foreign('serie_id')
+                ->references('id')
+                ->on('series');
         });
     }
 

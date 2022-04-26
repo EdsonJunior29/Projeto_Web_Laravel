@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('episodios', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->Integer('numero');
-            $table->foreignId('temporada_id');
+            $table->integer('numero');
+            $table->unsignedBigInteger('temporada_id');
+
+            $table->foreign('temporada_id')
+                ->references('id')
+                ->on('temporadas');
         });
     }
 
