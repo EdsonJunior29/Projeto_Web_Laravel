@@ -7,6 +7,7 @@ use App\Models\Episodio;
 use App\Models\Temporada;
 use App\Serie;
 use App\services\CriarSeries;
+use App\services\RemoverSeries;
 use Illuminate\Http\Request;
 
 class SeriesController extends Controller
@@ -35,16 +36,9 @@ class SeriesController extends Controller
         return redirect()->route('Lista_series')->with('mensagem', 'Serie, temporadas e episódios cadastrados com sucesso!');
     }
 
-    public function destroy(Request $request)
+    public function destroy(Request $request, RemoverSeries $removerSeries)
     {
-        $serie = Serie::find($request->id);
-        $serie->temporadas->each(function (Temporada $temporada) {
-            $temporada->episodios->each(function (Episodio $episodio) {
-                $episodio->delete();
-            });
-            $temporada->delete();
-        });
-        $serie->delete();
+        $nomeSeries = $removerSeries->removerSerie($request->id);
         return redirect('/series')->with('mensagem', 'Serie removida com sucesso!');
     }
 }
