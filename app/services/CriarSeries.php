@@ -12,11 +12,12 @@ class CriarSeries
     public function criarSerie(string $nomeDaSerie, int $qtdTemporadas, int $qtdEpisodios): Serie
     {
 
-        $serie = new Serie();
-        DB::transaction(function () use ($nomeDaSerie, $qtdTemporadas, $qtdEpisodios, &$serie) {
-            $serie = Serie::create(['nome' => $nomeDaSerie]);
-            $this->criarTemporadas($qtdTemporadas, $qtdEpisodios, $serie);
-        });
+        DB::beginTransaction();
+
+        $serie = Serie::create(['nome' => $nomeDaSerie]);
+        $this->criarTemporadas($qtdTemporadas, $qtdEpisodios, $serie);
+
+        DB::commit();
 
         return $serie;
     }

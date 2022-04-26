@@ -41,4 +41,12 @@ class SeriesController extends Controller
         $nomeSeries = $removerSeries->removerSerie($request->id);
         return redirect('/series')->with('mensagem', 'Serie removida com sucesso!');
     }
+
+    public function editaNome(int $id, Request $request)
+    {
+        $serie = Serie::find($id);
+        $novoNome = $request->nome;
+        $serie->nome = $novoNome;
+        $serie->save();
+    }
 }
