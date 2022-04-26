@@ -16,11 +16,21 @@ Adicionar Séries
 @endif
 <form method="post">
     @csrf
-    <div class="form-group">
-        <label for="nome" class="form-label">Nome</label>
-        <input type="text" class="form-control mb-2" id="nome" placeholder="Nome" name="nome">
+    <div class="row">
+        <div class="col col-8">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" class="form-control" id="nome" name="nome">
+        </div>
+        <div class="col col-2">
+            <label for="temporadas" class="form-label">Temporadas</label>
+            <input type="number" class="form-control" id="temporadas" name="temporadas">
+        </div>
+        <div class="col col-2">
+            <label for="episodios" class="form-label">Episódios</label>
+            <input type="number" class="form-control" id="episodios" name="episodios">
+        </div>
     </div>
-    <button class="btn btn-primary">Adicionar</button>
+    <button class="btn btn-primary mt-2">Adicionar</button>
 
 </form>
 @endsection
