@@ -16,25 +16,26 @@ class RemoverSeries
             $serie = Serie::find($serieId);
             $nomeDaSerie = $serie->nome;
 
-            $this->removerSerieETemporadas($serie);
+            $this->removerTemporadas($serie);
+            $serie->delete();
         });
+
 
         return $nomeDaSerie;
     }
 
-    public function removerSerieETemporadas($serie): void
+    private function removerTemporadas(Serie $serie): void
     {
         $serie->temporadas->each(function (Temporada $temporada) {
-            $this->removerTemporada($temporada);
+            $this->removerEpisodio($temporada);
+            $temporada->delete();
         });
-        $serie->delete();
     }
 
-    public function removerTemporada(Temporada $temporada): void
+    private function removerEpisodio(Temporada $temporada): void
     {
         $temporada->episodios->each(function (Episodio $episodio) {
             $episodio->delete();
         });
-        $temporada->delete();
     }
 }
