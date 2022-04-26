@@ -8,3 +8,5 @@ Route::get('/series/criar', 'App\Http\Controllers\SeriesController@create')
     ->name('form_criar_serie');
 Route::post('/series/criar', 'App\Http\Controllers\SeriesController@store');
 Route::delete('/series/{id}', 'App\Http\Controllers\SeriesController@destroy');
+
+Route::get('/series/{serieid}/temporadas', 'App\Http\Controllers\TemporadasController@index');
