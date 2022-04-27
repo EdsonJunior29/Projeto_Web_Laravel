@@ -11,7 +11,9 @@
         </div>
     @endif
 
-    <a href="{{ route('form_criar_serie') }}" type="button" class="btn btn-secondary mb-2">Adicionar</a>
+    @auth
+        <a href="{{ route('form_criar_serie') }}" type="button" class="btn btn-secondary mb-2">Adicionar</a>
+    @endauth
     <ul class="list-group">
         @foreach ($series as $serie)
             <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -20,28 +22,34 @@
                 <div class="input-group w-50" hidden id="input-nome-serie-{{ $serie->id }}">
                     <input type="text" class="form-control" value="{{ $serie->nome }}">
                     <div class="input-group-append">
-                        <button class="btn btn-primary mr-3" onclick="editarSerie({{ $serie->id }})">
-                            Editar
-                        </button>
+                        @auth
+                            <button class="btn btn-primary mr-3" onclick="editarSerie({{ $serie->id }})">
+                                Editar
+                            </button>
+                        @endauth
                         @csrf
                     </div>
                 </div>
 
                 <span class="d-flex">
-                    <button class="btn btn-info btn-sm mr-3" onclick="toggleInput({{ $serie->id }})">
-                        Atualizar
-                    </button>
+                    @auth
+                        <button class="btn btn-info btn-sm mr-3" onclick="toggleInput({{ $serie->id }})">
+                            Atualizar
+                        </button>
+                    @endauth
                     <a href="/series/{{ $serie->id }}/temporadas" class="btn btn-info btn-sm mr-3">
                         Temporadas
                     </a>
-                    <form method="post" action="/series/{{ $serie->id }}"
-                        onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($serie->nome) }}?')">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-sm mr-3">
-                            Ecxluir
-                        </button>
-                    </form>
+                    @auth
+                        <form method="post" action="/series/{{ $serie->id }}"
+                            onsubmit="return confirm('Tem certeza que deseja remover {{ addslashes($serie->nome) }}?')">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-sm mr-3">
+                                Excluir
+                            </button>
+                        </form>
+                    @endauth
                 </span>
             </li>
         @endforeach
