@@ -47,3 +47,7 @@ Route::get('/sair', function () {
     Auth::logout();
     return redirect('/entrar');
 });
+
+Route::get('/email', function () {
+    return new \App\Mail\NovaSerie('Arrow', 1, 1);
+});
