@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -50,4 +51,18 @@ Route::get('/sair', function () {
 
 Route::get('/email', function () {
     return new \App\Mail\NovaSerie('Arrow', 1, 1);
+});
+
+Route::get('/enviando-email', function () {
+    $email = new \App\Mail\NovaSerie('Arrow', 1, 1);
+
+    $email->subject = 'Nova Série Adicionada';
+
+    $user = (object)[
+        'email' => 'edson@teste.com',
+        'name' => 'Edson'
+    ];
+
+    Mail::to($user)->send($email);
+    return 'Email enviado.';
 });
