@@ -8,11 +8,12 @@ use Illuminate\Http\Request;
 
 class EpisodioController extends Controller
 {
-    public function index(Temporada $temporada)
+    public function index(Temporada $temporada, Request $request)
     {
         $episodios = $temporada->episodios;
         $temporadaId = $temporada->id;
-        return view('episodios.index', compact('episodios', 'temporadaId'));
+        $mensagem =  $request->session()->get('mensagem');
+        return view('episodios.index', compact('episodios', 'temporadaId', 'mensagem'));
     }
 
     public function assistir(Temporada $temporada, Request $request)
@@ -26,6 +27,6 @@ class EpisodioController extends Controller
             );
         });
         $temporada->push();
-        return redirect()->back()->with('mesagem', 'Episódio marcado com sucesso.');
+        return redirect()->back()->with('mensagem', 'Episódios marcados como assistidos.');
     }
 }
