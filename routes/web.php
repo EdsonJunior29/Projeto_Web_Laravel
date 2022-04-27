@@ -2,6 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__ . '/auth.php';
+
 Route::get('/series', 'App\Http\Controllers\SeriesController@index')
     ->name('Lista_series');
 Route::get('/series/criar', 'App\Http\Controllers\SeriesController@create')
