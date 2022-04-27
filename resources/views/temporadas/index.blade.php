@@ -10,7 +10,7 @@ Temporadas de {{$serie ->nome}}
     <li class="list-group-item d-flex justify-content-between">
         <a href="/temporadas/{{$temporada->id}}/episodios"> Temporada {{ $temporada->numero }}</a>
         <span class="badge-secondary">
-            0 / {{ $temporada->episodios->count() }}
+            {{$temporada->getEpisodiosAssistidos()->count()}} / {{ $temporada->episodios->count() }}
         </span>
     </li>
     @endforeach
