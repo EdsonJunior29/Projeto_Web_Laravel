@@ -20,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         ],
         \App\Events\NovaSerie::class => [
             \App\Listeners\EnviarEmailNovaSerieCadastrada::class
+        ],
+        \App\Events\ExcluirSeries::class => [
+            \App\Listeners\ExcluirCapaSerie::class
         ]
     ];
 
