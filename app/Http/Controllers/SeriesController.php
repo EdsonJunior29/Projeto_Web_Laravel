@@ -9,6 +9,7 @@ use App\Serie;
 use App\services\CriarSeries;
 use App\services\RemoverSeries;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class SeriesController extends Controller
 {
@@ -21,10 +22,12 @@ class SeriesController extends Controller
         return view('series.index', compact('series', 'mensagem'));
     }
 
+
     public function create()
     {
         return view('series.create');
     }
+
 
     public function store(SeriesFormRequest $request, CriarSeries $criarSeries)
     {
@@ -33,6 +36,15 @@ class SeriesController extends Controller
             $request->temporadas,
             $request->episodios
         );
+
+        $email = new \App\Mail\NovaSerie(
+            $request->nome,
+            $request->temporadas,
+            $request->episodios
+        );
+        $user = $request->user();
+        Mail::to($user)->send($email);
+
         return redirect()->route('Lista_series')->with('mensagem', 'Serie, temporadas e episódios cadastrados com sucesso!');
     }
 
