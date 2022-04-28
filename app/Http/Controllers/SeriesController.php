@@ -32,7 +32,8 @@ class SeriesController extends Controller
         $serie = $criarSeries->criarSerie(
             $request->nome,
             $request->temporadas,
-            $request->episodios
+            $request->episodios,
+            $request->capa
         );
 
         $newEvent = new NovaSerie(
