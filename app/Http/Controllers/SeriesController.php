@@ -40,15 +40,17 @@ class SeriesController extends Controller
 
         $users = User::all();
 
-        foreach ($users as $user) {
+        foreach ($users as $indice => $user) {
+            $multiplicador = $indice + 0;
+
             $email = new \App\Mail\NovaSerie(
                 $request->nome,
                 $request->temporadas,
                 $request->episodios
             );
             $email->subject = 'Nova Série Adicionada';
-            Mail::to($user)->send($email);
-            sleep(5);
+            $when = now()->addSeconds($multiplicador * 10);
+            Mail::to($user)->later($when, $email);
         }
 
 
