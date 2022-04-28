@@ -29,6 +29,9 @@ class SeriesController extends Controller
 
     public function store(SeriesFormRequest $request, CriarSeries $criarSeries)
     {
+
+        dd($request->file('capa')->store('serie'));
+
         $serie = $criarSeries->criarSerie(
             $request->nome,
             $request->temporadas,

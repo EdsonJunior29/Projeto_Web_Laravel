@@ -14,7 +14,7 @@
             </ul>
         </div>
     @endif
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col col-8">
