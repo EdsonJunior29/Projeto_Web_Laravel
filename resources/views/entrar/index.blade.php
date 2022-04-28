@@ -30,11 +30,8 @@
         <button type="submit" class="btn btn-primary mt-3">
             Entrar
         </button>
-
-        @auth
             <a href="/registrar" class="btn btn-secondary mt-3">
                 Registrar-se
             </a>
-        @endauth
     </form>
 @endsection

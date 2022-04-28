@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SeriesFormRequest;
 use App\Models\Episodio;
 use App\Models\Temporada;
+use App\Models\User;
 use App\Serie;
 use App\services\CriarSeries;
 use App\services\RemoverSeries;
@@ -37,13 +38,19 @@ class SeriesController extends Controller
             $request->episodios
         );
 
-        $email = new \App\Mail\NovaSerie(
-            $request->nome,
-            $request->temporadas,
-            $request->episodios
-        );
-        $user = $request->user();
-        Mail::to($user)->send($email);
+        $users = User::all();
+
+        foreach ($users as $user) {
+            $email = new \App\Mail\NovaSerie(
+                $request->nome,
+                $request->temporadas,
+                $request->episodios
+            );
+            $email->subject = 'Nova Série Adicionada';
+            Mail::to($user)->send($email);
+            sleep(5);
+        }
+
 
         return redirect()->route('Lista_series')->with('mensagem', 'Serie, temporadas e episódios cadastrados com sucesso!');
     }

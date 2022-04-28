@@ -54,15 +54,10 @@ Route::get('/email', function () {
 });
 
 Route::get('/enviando-email', function () {
-    $email = new \App\Mail\NovaSerie('Arrow', 1, 1);
-
-    $email->subject = 'Nova Série Adicionada';
 
     $user = (object)[
         'email' => 'edson@teste.com',
         'name' => 'Edson'
     ];
-
-    Mail::to($user)->send($email);
     return 'Email enviado.';
 });
